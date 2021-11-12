@@ -6,7 +6,6 @@ a WeChat Service for Hackathon 2021
 
 ### Front-end
 
-* 后台管理界面搭建
 * HTML5 Page 1: 根据条件查询经纪人
 * HTML5 Page 2: 订阅房源信息
 * 群发文章的素材收集与整理
