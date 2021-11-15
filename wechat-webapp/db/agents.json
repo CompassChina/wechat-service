@@ -1,0 +1,12 @@
+[
+    {
+        "name": "agent1",
+        "region": "sf",
+        "speaking_chinese": true
+    },
+    {
+        "name": "agent2",
+        "region": "la",
+        "speaking_chinese": false
+    }
+]
