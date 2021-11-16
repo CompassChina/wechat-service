@@ -1,4 +1,21 @@
+const request  = require('../lib/request');
+const token = require('../model/token')
 
+const getUsers = function (callback) {
+    //
+    const t = token.getToken()
+    const r = {
+        method: 'GET',
+        url: `https://api.weixin.qq.com/cgi-bin/user/get?access_token=${t}`,
+        contentType: 'application/json',
+        callback: function(response) {
+            console.log('获取 users', response)
+            const data = JSON.parse(response)
+            callback(data.data.openid)
+        }
+    }
+    request.ajax(r)
+}
 
 var getMessage = {
     path: '/wechat/msg',
@@ -35,6 +52,14 @@ const isSubscribe = function (xml) {
     return MsgType === 'event' && Event === 'subscribe'
 }
 
+const isListingsClicked = function (xml) {
+    // <Event><![CDATA[CLICK]]></Event>
+    // <EventKey><![CDATA[EVENTKEY]]></EventKey>
+    const Event = valueFromXml(xml, 'Event')
+    const EventKey = valueFromXml(xml, 'EventKey')
+    return Event === 'CLICK' && EventKey === 'LISTINGS';
+}
+
 const now = function () {
     const d = new Date()
     return d.getTime();
@@ -68,13 +93,30 @@ var postMessage = {
         request.on('end',function(){
         //输出接收完成的数据
             const xml = Buffer.concat(buffer).toString('utf-8')
-            let s = ''
+
             if (isSubscribe(xml)) {
                 // 响应公众号关注事件
-                s = welcomeMsg(xml)
+                const s = welcomeMsg(xml)
+                response.send(s)
+            } else {
+                const s = ''
+                response.send(s)
             }
-            response.send(s)
+
         });
+
+    }
+}
+
+const users = {
+    path: '/wechat/api/users',
+    method: 'get',
+    func: function(request, response) {
+        console.log('api users');
+        getUsers(function (openids) {
+            var r = JSON.stringify(openids)
+            response.send(r)
+        })
 
     }
 }
@@ -82,6 +124,7 @@ var postMessage = {
 var routes = [
     getMessage,
     postMessage,
+    users,
 ]
 
 module.exports.routes = routes
