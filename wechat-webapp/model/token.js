@@ -21,25 +21,6 @@ const model = {
     data: loadtoken()
 }
 
-// model.all = function() {
-//     var tokens = this.data
-//     // 遍历 token，插入 comments
-//     const comment = require('./comment')
-//     var comments = comment.all()
-//     for (var i = 0; i < tokens.length; i++) {
-//         var token = tokens[i]
-//         var cs = []
-//         for (var j = 0; j < comments.length; j++) {
-//             var c = comments[j]
-//             if (token.id == c.token_id) {
-//                 cs.push(c)
-//             }
-//         }
-//         token.comments = cs
-//     }
-//     return tokens
-// }
-
 model.new = function(form) {
     const m = new ModelToken(form)
     this.data = m
@@ -57,6 +38,10 @@ model.save = function() {
           console.log('保存成功')
       }
     })
+}
+
+model.getToken = function() {
+    return this.data.access_token
 }
 
 module.exports = model

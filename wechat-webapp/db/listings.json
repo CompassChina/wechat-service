@@ -1,0 +1,18 @@
+[
+    {
+        "id": 0,
+        "address": "4564 MacArthur Blvd NW, Unit 3B",
+        "region": "DC",
+        "image": "/images/dc_4564.jpeg",
+        "price": 457000,
+        "media_id": "UfRzJr2DE0HZawBQaFlVKezkkcWOPIv5l1bhYNdaKgoYCqedY9e6lOLUyBTYa9w6"
+    },
+    {
+        "id": 1,
+        "address": "3 Carriage House Ln",
+        "region": "NY",
+        "image": "/images/ny_3_Carriage_House_Ln.jpeg",
+        "price": 1550000,
+        "media_id": ""
+    }
+]

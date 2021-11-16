@@ -1,9 +1,11 @@
 var express = require('express')
 var app = express()
 var bodyParser = require('body-parser')
+const cookieParser = require("cookie-parser")
 
 app.use(bodyParser.json())
 app.use(express.static('static'))
+app.use(cookieParser())
 
 const request  = require('./lib/request');
 
@@ -32,12 +34,12 @@ const createMenu = function(token) {
         {
              "type":"view",
              "name":"经纪人",
-             "url":"http://101.35.10.148:8080/compass/agents"
+             "url":"http://101.35.10.148/compass/agents"
          },
          {
               "type":"view",
               "name":"房源",
-              "url":"http://101.35.10.148:8080/compass/listings"
+              "url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa7c80e98abaf8cf8&redirect_uri=http://101.35.10.148/compass/auth&response_type=code&scope=snsapi_base&state=1#wechat_redirect"
           }
       ]
     }
@@ -65,6 +67,7 @@ const registerRoutes = function(app, routes) {
 
 const registerAllRoutes = function() {
     const routeModules = [
+        './route/articles',
         './route/wechat',
         './route/compass',
         './route/agent',
@@ -76,7 +79,7 @@ const registerAllRoutes = function() {
 }
 
 const setupApp = function () {
-    var server = app.listen(8080, function () {
+    var server = app.listen(80, function () {
       var host = server.address().address
       var port = server.address().port
       console.log(`应用实例，访问地址为 http://${host}:${port}`)
