@@ -14,7 +14,7 @@ const routes = [
           import(/* webpackChunkName: "agent_search" */ "../views/agent/Search.vue"),
       },
       {
-        path: "profile",
+        path: "profile/:id",
         name: "Profile",
         component: () =>
           import(/* webpackChunkName: "agent_profile" */ "../views/agent/Profile.vue"),

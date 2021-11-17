@@ -32,10 +32,22 @@ var filter = {
     }
 }
 
+var getById = {
+    path: '/compass/api/agent/:id',
+    method: 'get',
+    func: function(request, response) {
+        const id = request.params.id * 1;
+        const b = agent.getById(id)
+        const r = JSON.stringify(b)
+        response.send(r)
+    }
+}
+
 var routes = [
     all,
     add,
     filter,
+    getById,
 ]
 
 module.exports.routes = routes

@@ -1,5 +1,6 @@
 [
     {
+        "id": 1,
         "name": "agent1",
         "region": "sf",
         "speaking_chinese": true,
@@ -11,6 +12,7 @@
         "email": "xxx@xx"
     },
     {
+        "id": 2,
         "name": "agent2",
         "region": "la",
         "speaking_chinese": false,
@@ -22,6 +24,7 @@
         "email": "xxx@xx"
     },
     {
+        "id": 3,
         "name": "agent3",
         "region": "sf",
         "speaking_chinese": false,
@@ -33,6 +36,7 @@
         "email": "xxx@xx"
     },
     {
+        "id": 4,
         "name": "agent4",
         "region": "la",
         "speaking_chinese": true,

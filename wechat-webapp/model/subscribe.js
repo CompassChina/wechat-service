@@ -69,6 +69,18 @@ model.new = function(form) {
     return m
 }
 
+model.remove = function(form) {
+    const subscribeItem = this.find(form);
+    if (subscribeItem === undefined) {
+        return {
+            msg: '您没有订阅该地区'
+        }
+    }
+    this.data = this.data.filter((it) => !(it.openid  === form.openid && it.region === form.region))
+    this.save();
+    return subscribeItem;
+}
+
 model.save = function() {
     var s = JSON.stringify(this.data, null, 4)
     fs.writeFile(subscribeFilePath, s, (err) => {

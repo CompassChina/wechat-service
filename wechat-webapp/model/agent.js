@@ -59,6 +59,11 @@ model.save = function () {
     })
 }
 
+model.getById = function(id) {
+    const agents = this.all();
+    return agents.find(it => it.id === id)
+}
+
 model.filter = function ({ region, speaking_chinese = '' }) {
     const agents = this.data
     const result = agents.filter(e => {

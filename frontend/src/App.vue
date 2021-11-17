@@ -1,7 +1,5 @@
 <template>
-<suspense>
   <router-view />
-</suspense>
 </template>
 
 <style lang="less">

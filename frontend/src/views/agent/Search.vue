@@ -11,7 +11,7 @@
             </template>
         </van-search>
         <van-list class="agent-list">
-            <div class="list-item" v-for="item in agentLists" :key="item.name">
+            <div class="list-item" v-for="item in agentLists" :key="item.name" @click="goProfile(item.id)">
                 <div class="item-left flex-center">
                     <img src="https://img.yzcdn.cn/vant/ipad.jpeg" alt="">
                 </div>
@@ -61,7 +61,7 @@ import { mapState } from 'vuex';
 
 import {Search, List, Button, Popup, Row, Col, Radio, RadioGroup} from 'vant';
 
-import { getAgent, filterAgent } from '../../api';
+import { getAgentApi, filterAgentApi } from '../../api';
 export default {
     components: {
         [Search.name]: Search,
@@ -75,7 +75,7 @@ export default {
     },
     async setup(){
         const value = ref('');
-        const agents =  await getAgent();
+        const agents =  await getAgentApi();
         const agentLists = ref(agents);
         const dialogShow = ref(false);
         const regionChecked = ref('');
@@ -91,6 +91,14 @@ export default {
         closeModal(){
             this.dialogShow = false;
         },
+        goProfile(id){
+            this.$router.push({
+                name: 'Profile',
+                params: {
+                    id
+                }
+            })
+        },
         async onFilterAgent(){
             let form = {};
             if(this.speakingChineseChecked !== ''){
@@ -101,7 +109,7 @@ export default {
                 form.region = this.regionChecked;
             }
 
-            const agents =  await filterAgent(form);
+            const agents =  await filterAgentApi(form);
             this.agentLists = agents;
             this.closeModal();
         },
@@ -109,7 +117,7 @@ export default {
             this.speakingChineseChecked = '';
             this.regionChecked = '';
 
-            const agents =  await getAgent();
+            const agents =  await getAgentApi();
             this.agentLists = agents;
             this.closeModal();
         }

@@ -23,10 +23,27 @@ var add = {
 }
 
 var user = {
-    path: '/compass/api/subscribe/user',
+    path: '/compass/api/subscribe/user/:openid',
     method: 'get',
     func: function(request, response) {
-        const b = subscribe.find_by_openid();
+        const openid = request.params.openid
+        let r;
+        if(!openid){
+            r = JSON.stringify({ msg: 'openid不能为空' })
+        }else{
+            const b = subscribe.find_by_openid(openid)
+            r = JSON.stringify(b)
+        }
+        response.send(r)
+    }
+}
+
+var remove = {
+    path: '/compass/api/subscribe/remove',
+    method: 'post',
+    func: function(request, response) {
+        const form = request.body
+        const b = subscribe.remove(form)
         const r = JSON.stringify(b)
         response.send(r)
     }
@@ -35,6 +52,8 @@ var user = {
 var routes = [
     all,
     add,
+    user,
+    remove,
 ]
 
 module.exports.routes = routes

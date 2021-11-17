@@ -3,32 +3,33 @@
       <div class="agent-card">
         <div class="flex-center">
           <div class="agent-left">
-            <div class="agent-name">Ronit Abraham</div>
-            <div class="agent-title">Licensed Real Estate Salesperson</div>
-            <div class="agent-email">邮箱：<a href="mailto:ronit.abraham@compass.com">ronit.abraham@compass.com</a></div>
-            <div class="agent-mobile">电话: <a href="tel:917-572-2583">917-572-2583</a></div>
+            <div class="agent-name">{{agentInfo.name}}</div>
+            <div class="agent-title">地区：{{agentInfo.region}}</div>
+            <div class="agent-title">中文服务：{{agentInfo.speaking_chinese?'是':'否'}}</div>
+            <div class="agent-email">邮箱：<a :href="`mailto:${agentInfo.email}`">{{agentInfo.email}}</a></div>
+            <div class="agent-mobile">电话: <a :href="`tel:${agentInfo.phone_number}`">{{agentInfo.phone_number}}</a></div>
           </div>
           <div class="agent-right">
             <div class="agent-avatar">
-              <img src="https://d2787ndpv5cwhz.cloudfront.net/755b72af1b71bc94a431902bf74e47cdf4069a30/300x300.jpg" alt="">
+              <img src="https://img.yzcdn.cn/vant/ipad.jpeg" alt="">
             </div>
           </div>
         </div>
         <ul class="info-lists">
           <li>
-            <div class="info-content">412</div>
+            <div class="info-content">{{agentInfo.rating}}</div>
+            <div class="info-title">满意度</div>
+          </li>
+          <li>
+            <div class="info-content">{{agentInfo.service_people}}</div>
             <div class="info-title">帮助客户</div>
           </li>
           <li>
-            <div class="info-content">412</div>
-            <div class="info-title">累计带看</div>
-          </li>
-          <li>
-            <div class="info-content">412</div>
+            <div class="info-content">{{agentInfo.num_of_deals}}</div>
             <div class="info-title">成交数量</div>
           </li>
           <li>
-            <div class="info-content">2年</div>
+            <div class="info-content">{{agentInfo.service_years}}年</div>
             <div class="info-title">从业时间</div>
           </li>
         </ul>
@@ -44,18 +45,25 @@
 
 <script>
 import { ref } from 'vue';
+import {useRouter } from 'vue-router'
 
 import HouseItem from "../../components/HouseItem";
+import { getAgentByIdApi } from "../../api/agent"
 
 export default {
   components:{
     HouseItem
   },
-  setup(){
+  async setup(){
+    const router = useRouter();
     const houseList = ref([1,2,3,4,5,6]);
+    const id = router.currentRoute.value.params.id;
+    const agentRes = await getAgentByIdApi(id);
+    const agentInfo = ref(agentRes);
 
-    return { houseList }
-  }
+    return { agentInfo, houseList }
+  },
+  
 }
 </script>
 
@@ -104,7 +112,8 @@ export default {
   .info-lists{
     display: flex;
     justify-content: space-around;
-    padding: 0;
+    padding: 14px 0 0;
+    text-align: center;
     li{
       list-style: none;
     }
@@ -115,10 +124,11 @@ export default {
     .info-content{
       font-size: 20px;
       font-weight: bold;
+      line-height: 28px;
     }
   }
   .house-lists{
-    padding: 0 32px;
+    padding: 0 32px 30px;
     .house-list + .house-list{
       margin-top: 20px;
     }
