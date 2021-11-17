@@ -8,9 +8,20 @@
     <body>
     <h1>查找经纪人</h1>
     <img src=/images/doge.gif>
-    <div class="agent-list">
-
+    <div class="agent-filter">
+        <select id="id-select-region">
+            <option value="">地区</option>
+            <option value="la">la</option>
+            <option value="sf">sf</option>
+        </select>
+        <select id="id-select-chinese">
+            <option value="0">中文服务</option>
+            <option value="1">是</option>
+            <option value="2">否</option>
+        </select>
     </div>
+    <div class="agent-list"></div>
+
     <script src="/js/lib.js"></script>
     <script src="/js/agents.js"></script>
 </body>
