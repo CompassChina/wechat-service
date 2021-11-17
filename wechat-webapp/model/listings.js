@@ -74,4 +74,12 @@ model.save = function() {
     })
 }
 
+model.find_by_region = function(region) {
+    const l = this.all()
+    const r = l.filter((it) => {
+       return it.region === region
+    })
+    return r
+}
+
 module.exports = model

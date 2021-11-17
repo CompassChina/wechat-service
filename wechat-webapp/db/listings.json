@@ -5,7 +5,8 @@
         "region": "dc",
         "image": "/images/dc_4564.jpeg",
         "price": 457000,
-        "media_id": "UfRzJr2DE0HZawBQaFlVKezkkcWOPIv5l1bhYNdaKgoYCqedY9e6lOLUyBTYa9w6"
+        "media_id": "UfRzJr2DE0HZawBQaFlVKezkkcWOPIv5l1bhYNdaKgoYCqedY9e6lOLUyBTYa9w6",
+        "created_time": 1637067670
     },
     {
         "id": 1,
@@ -13,6 +14,25 @@
         "region": "ny",
         "image": "/images/ny_3_Carriage_House_Ln.jpeg",
         "price": 1550000,
-        "media_id": ""
+        "media_id": "",
+        "created_time": 1637067670
+    },
+    {
+        "address": "",
+        "region": "LA",
+        "image": "",
+        "price": 8319,
+        "media_id": "",
+        "created_time": 1637119378,
+        "id": 2
+    },
+    {
+        "address": "",
+        "region": "sf",
+        "image": "",
+        "price": 8513,
+        "media_id": "",
+        "created_time": 1637119693,
+        "id": 3
     }
 ]

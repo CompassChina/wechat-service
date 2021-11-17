@@ -1,48 +1,14 @@
 [
     {
-        "id": 0,
-        "openid": "o0mlt58Ow9HrfB9ybY7pX1IZx0VU",
-        "region": "dc"
-    },
-    {
-        "id": 1,
         "openid": "o0mlt5xCdop3gNRXe104bPKI26is",
-        "region": "la"
+        "region": "LA",
+        "created_time": 1637119330,
+        "id": 1
     },
     {
         "openid": "o0mlt5xCdop3gNRXe104bPKI26is",
         "region": "sf",
-        "created_time": 1637067670,
+        "created_time": 1637119651,
         "id": 2
-    },
-    {
-        "openid": "o0mlt5xCdop3gNRXe104bPKI26is",
-        "region": "la",
-        "created_time": 1637067777,
-        "id": 3
-    },
-    {
-        "openid": "o0mlt5xCdop3gNRXe104bPKI26is",
-        "region": "",
-        "created_time": 1637068247,
-        "id": 4
-    },
-    {
-        "openid": "o0mlt5xCdop3gNRXe104bPKI26is",
-        "region": "bb",
-        "created_time": 1637068258,
-        "id": 5
-    },
-    {
-        "openid": "o0mlt5xCdop3gNRXe104bPKI26is",
-        "region": "cc",
-        "created_time": 1637068263,
-        "id": 6
-    },
-    {
-        "openid": "o0mlt5xCdop3gNRXe104bPKI26is",
-        "region": "dd",
-        "created_time": 1637068268,
-        "id": 7
     }
 ]
