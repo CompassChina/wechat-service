@@ -67,6 +67,7 @@ const registerRoutes = function(app, routes) {
 
 const registerAllRoutes = function() {
     const routeModules = [
+        './route/subscribe',
         './route/articles',
         './route/wechat',
         './route/compass',
