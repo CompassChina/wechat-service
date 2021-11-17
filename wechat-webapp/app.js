@@ -12,6 +12,7 @@ const request  = require('./lib/request');
 const token = require('./model/token')
 
 const subscribe = require('./action/subscribe')
+const article = require('./action/article')
 
 
 // Todo move it to a separated file
@@ -95,5 +96,6 @@ const __main = function() {
     registerAllRoutes()
     setupApp()
     subscribe.runSubscribeCheck()
+    // article.upload()
 }
 __main()

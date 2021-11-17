@@ -1,10 +1,19 @@
 
+var articleTemplate = function (article) {
+    var t = `
+    <div class="article-cell">
+        <span class="article-title">${article.title}</span>
+        <span class="article-img"><img src="${article.image}" height="200" width="200" alt="" /></span>
+    </div>
+    `
+    return t
+}
 
-var insertListing = function(articless) {
-    var html = ''
-    for (var i = 0; i < articless.length; i++) {
-        var b = articless[i]
-        var t = articlesTemplate(b)
+var insertArticles = function(articles) {
+    var html = '<h2>素材预览</h2>'
+    for (var i = 0; i < articles.length; i++) {
+        var a = articles[i]
+        var t = articleTemplate(a)
         html += t
     }
     var div = document.querySelector('.articles-list')
@@ -14,12 +23,11 @@ var insertListing = function(articless) {
 var articlesAll = function() {
     var request = {
         method: 'GET',
-        url: '/compass/api/listings',
+        url: '/compass/api/articles',
         contentType: 'application/json',
         callback: function(response) {
-            var listings = JSON.parse(response)
-            var listing = listings[0]
-            insertListing(listing)
+            var articles = JSON.parse(response)
+            insertArticles(articles)
         }
     }
     ajax(request)
@@ -38,7 +46,7 @@ var send = function(form) {
         data: data,
         contentType: 'application/json',
         callback: function(response) {
-            console.log('响应', response)
+            console.log('群发成功响应', response)
             var res = JSON.parse(response)
         }
     }
@@ -65,7 +73,6 @@ var bindEvents = function() {
     button.addEventListener('click', function(event){
         var form = {
             openids: e('#id-textarea-users').value.split('\n').slice(0, 20),
-            listing_id: window.listing_id,
         }
         send(form)
     })
@@ -79,7 +86,7 @@ var bindEvents = function() {
 }
 
 var __main = function() {
-    window.listing_id = 0
+    articlesAll()
     bindEvents()
 }
 
