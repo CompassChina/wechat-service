@@ -11,6 +11,9 @@ const request  = require('./lib/request');
 
 const token = require('./model/token')
 
+const subscribe = require('./action/subscribe')
+
+
 // Todo move it to a separated file
 const getAccessToken = function() {
     const r = {
@@ -91,5 +94,6 @@ const __main = function() {
     getAccessToken()
     registerAllRoutes()
     setupApp()
+    subscribe.runSubscribeCheck()
 }
 __main()
