@@ -22,6 +22,16 @@ var add = {
     }
 }
 
+var user = {
+    path: '/compass/api/subscribe/user',
+    method: 'get',
+    func: function(request, response) {
+        const b = subscribe.find_by_openid();
+        const r = JSON.stringify(b)
+        response.send(r)
+    }
+}
+
 var routes = [
     all,
     add,

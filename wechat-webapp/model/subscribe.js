@@ -34,6 +34,14 @@ model.find_by_region = function(region) {
     return r
 }
 
+model.find_by_openid = function(openid) {
+    const subscribes = this.all()
+    const r = subscribes.filter((it) => {
+       return it.openid === openid
+    })
+    return r
+}
+
 model.find = function(form) {
     const data = this.data.filter((it) => {
        return it.openid === form.openid && it.region === form.region

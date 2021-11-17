@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="search">
         <van-search
         v-model="value"
         show-action
@@ -16,21 +16,38 @@
                     <img src="https://img.yzcdn.cn/vant/ipad.jpeg" alt="">
                 </div>
                 <div class="item-right">
-                    <div class="agent-name">{{item.name}}<span class="agent-score">满意度：5分</span></div>
-                    <div class="agent-region color-grey">地区：{{item.region}}</div>
-                    <div class="agent-chinese color-grey">是否支持中文：{{item.speaking_chinese?'是':'否'}}</div>
-                    <div class="color-grey">服务用户522次</div>
+                    <div class="agent-name">{{item.name}}<span class="agent-score">满意度：{{item.rating}}分</span></div>
+                    <div class="flex-between">
+                        <div>
+                            <div class="agent-infoItem">地区：{{item.region}}</div>
+                            <div class="agent-infoItem">是否支持中文：{{item.speaking_chinese?'是':'否'}}</div>
+                            <div class="agent-infoItem">邮箱：{{item.email}}</div>
+                            <div class="agent-infoItem">电话：{{item.phone_number}}</div>
+                        </div>
+                        <div class="agent-infoRight">
+                            <div class="agent-infoItem">从业：{{item.service_years}}年</div>
+                            <div class="agent-infoItem">服务用户：{{ item.service_people }}次</div>
+                            <div class="agent-infoItem">成交：{{ item.num_of_deals }}单</div>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </van-list>
         <van-popup v-model:show="dialogShow" position="bottom">
             <div class="select-container">
                 <div class="select-title">选择地区：</div>
-                <van-checkbox-group v-model="regionChecked">
-                    <van-checkbox :name="region" v-for="region in regionLists">{{region}}</van-checkbox>
-                </van-checkbox-group>
+                <van-radio-group v-model="regionChecked">
+                    <van-radio :name="region" v-for="region in regionLists">{{region}}</van-radio>
+                </van-radio-group>
+                <div class="select-title">是否支持中文：</div>
+                <van-radio-group v-model="speakingChineseChecked">
+                    <van-radio :name="true">是</van-radio>
+                    <van-radio :name="false">否</van-radio>
+                </van-radio-group>
                 <van-row class="button-box" justify="center">
-                    <van-button type="primary" @click="dialogShow = false">主要按钮</van-button>
+                    <van-button type="default" @click="onResetForm">立即重置</van-button>
+                    <van-button type="primary" @click="onFilterAgent">立即筛选</van-button>
                 </van-row>
                 
             </div>
@@ -40,16 +57,18 @@
 
 <script>
 import { ref } from 'vue';
-import { Search, List, Button, Checkbox, Popup, CheckboxGroup, Row, Col} from 'vant';
+import { mapState } from 'vuex';
 
-import { getAgent } from '../../api';
+import {Search, List, Button, Popup, Row, Col, Radio, RadioGroup} from 'vant';
+
+import { getAgent, filterAgent } from '../../api';
 export default {
     components: {
         [Search.name]: Search,
         [List.name]: List,
         [Popup.name]: Popup,
-        [Checkbox.name]: Checkbox,
-        [CheckboxGroup.name]: CheckboxGroup,
+        [Radio.name]: Radio,
+        [RadioGroup.name]: RadioGroup,
         [Row.name]: Row,
         [Button.name]: Button,
         [Col.name]: Col
@@ -59,24 +78,57 @@ export default {
         const agents =  await getAgent();
         const agentLists = ref(agents);
         const dialogShow = ref(false);
-        const regionChecked = ref([]);
-        const regionLists = ref(['地区1', '地区2', '地区3', '地区4', '地区5', '地区6', '地区7', '地区8', '地区9',])
-        return { agentLists, value, dialogShow, regionChecked, regionLists};
+        const regionChecked = ref('');
+        const speakingChineseChecked = ref('');
+        return {agentLists, value, dialogShow, regionChecked, speakingChineseChecked};
+    },
+    computed:{
+        ...mapState({
+            regionLists: state => state.regions,
+        })
     },
     methods: {
-        
+        closeModal(){
+            this.dialogShow = false;
+        },
+        async onFilterAgent(){
+            let form = {};
+            if(this.speakingChineseChecked !== ''){
+                form.speaking_chinese = this.speakingChineseChecked;
+            }
+
+            if(this.regionChecked !== ''){
+                form.region = this.regionChecked;
+            }
+
+            const agents =  await filterAgent(form);
+            this.agentLists = agents;
+            this.closeModal();
+        },
+        async onResetForm (){
+            this.speakingChineseChecked = '';
+            this.regionChecked = '';
+
+            const agents =  await getAgent();
+            this.agentLists = agents;
+            this.closeModal();
+        }
     }
 }
 </script>
 
 <style lang="less" scoped>
-    .color-grey{
-        color: #666;
-    }
     .flex-center{
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    .flex-between{
+        display: flex;
+        justify-content: space-between;
+    }
+    .search{
+        padding-bottom: 60px;
     }
     .agent-list{
         margin-top: 20px;
@@ -109,28 +161,38 @@ export default {
             font-weight: bold;
             margin-bottom: 10px;
         }
-
-        .agent-region,.agent-chinese{
-            margin-bottom: 4px;
+        .agent-infoItem{
+            color: #666;
         }
+        .agent-infoItem+.agent-infoItem{
+            margin-top: 4px;
+        }
+    }
+    .agent-infoRight{
+        margin-left: 12px;
     }
     .select-container{
         padding: 20px 20px;
         .select-title{
-            font-size: 20px;
+            font-size: 16px;
             font-weight: bold;
             margin-bottom: 10px;
         }
-        .van-checkbox-group{
+        .van-checkbox-group, .van-radio-group{
             display: flex;
             flex-wrap: wrap;
-            .van-checkbox{
+            margin-bottom: 20px;
+            .van-checkbox, .van-radio{
                 margin-bottom: 10px;
                 margin-right: 12px;
             }
         }
         .button-box{
             margin-top: 12px;
+            
+            .van-button + .van-button{
+                margin-left: 20px;
+            }
         }
     }
 </style>

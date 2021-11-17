@@ -5,3 +5,9 @@ export function getAgent() {
         return res.data;
     })
 }
+
+export function filterAgent({ region, speaking_chinese }) {
+    return ajax.post('/compass/api/agents/filter',{ region, speaking_chinese }).then(res=>{
+        return res.data;
+    })
+}

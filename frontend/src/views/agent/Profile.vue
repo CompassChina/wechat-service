@@ -5,8 +5,8 @@
           <div class="agent-left">
             <div class="agent-name">Ronit Abraham</div>
             <div class="agent-title">Licensed Real Estate Salesperson</div>
-            <div class="agent-email"><a href="mailto:ronit.abraham@compass.com">ronit.abraham@compass.com</a></div>
-            <div class="agent-mobile">M: <a href="tel:917-572-2583">917-572-2583</a></div>
+            <div class="agent-email">邮箱：<a href="mailto:ronit.abraham@compass.com">ronit.abraham@compass.com</a></div>
+            <div class="agent-mobile">电话: <a href="tel:917-572-2583">917-572-2583</a></div>
           </div>
           <div class="agent-right">
             <div class="agent-avatar">
@@ -14,6 +14,24 @@
             </div>
           </div>
         </div>
+        <ul class="info-lists">
+          <li>
+            <div class="info-content">412</div>
+            <div class="info-title">帮助客户</div>
+          </li>
+          <li>
+            <div class="info-content">412</div>
+            <div class="info-title">累计带看</div>
+          </li>
+          <li>
+            <div class="info-content">412</div>
+            <div class="info-title">成交数量</div>
+          </li>
+          <li>
+            <div class="info-content">2年</div>
+            <div class="info-title">从业时间</div>
+          </li>
+        </ul>
       </div>
       <div>
         <h3 class="house-title">已售房屋：</h3>
@@ -55,7 +73,6 @@ export default {
     width: calc(100% - 48px);
     background: #fff;
     box-shadow: 0px 0px 6px #ddd;
-    display: flex;
     padding: 12px;
     margin: 0 auto;
   }
@@ -82,6 +99,22 @@ export default {
     img{
       width: 90px;
       height: 90px;
+    }
+  }
+  .info-lists{
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    li{
+      list-style: none;
+    }
+    .info-title{
+      font-size: 12px;
+      color: #999;
+    }
+    .info-content{
+      font-size: 20px;
+      font-weight: bold;
     }
   }
   .house-lists{
