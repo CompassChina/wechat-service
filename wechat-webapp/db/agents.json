@@ -2,11 +2,45 @@
     {
         "name": "agent1",
         "region": "sf",
-        "speaking_chinese": true
+        "speaking_chinese": true,
+        "service_years": 2,
+        "service_people": 78,
+        "num_of_deals": 100,
+        "rating": 5,
+        "phone_number": "xxx",
+        "email": "xxx@xx"
     },
     {
         "name": "agent2",
         "region": "la",
-        "speaking_chinese": false
+        "speaking_chinese": false,
+        "service_years": 1,
+        "service_people": 32,
+        "num_of_deals": 67,
+        "rating": 4,
+        "phone_number": "xxx",
+        "email": "xxx@xx"
+    },
+    {
+        "name": "agent3",
+        "region": "sf",
+        "speaking_chinese": false,
+        "service_years": 2,
+        "service_people": 78,
+        "num_of_deals": 100,
+        "rating": 5,
+        "phone_number": "xxx",
+        "email": "xxx@xx"
+    },
+    {
+        "name": "agent4",
+        "region": "la",
+        "speaking_chinese": true,
+        "service_years": 2,
+        "service_people": 78,
+        "num_of_deals": 100,
+        "rating": 5,
+        "phone_number": "xxx",
+        "email": "xxx@xx"
     }
 ]

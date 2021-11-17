@@ -1,6 +1,5 @@
 const agent = require('../model/agent')
 
-
 var all = {
     path: '/compass/api/agents',
     method: 'get',
@@ -22,9 +21,21 @@ var add = {
     }
 }
 
+var filter = {
+    path: '/compass/api/agents/filter',
+    method: 'post',
+    func: function(request, response) {
+        const form = request.body
+        const b = agent.filter(form)
+        const r = JSON.stringify(b)
+        response.send(r)
+    }
+}
+
 var routes = [
     all,
     add,
+    filter,
 ]
 
 module.exports.routes = routes
