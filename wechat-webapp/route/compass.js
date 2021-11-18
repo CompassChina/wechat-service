@@ -36,8 +36,9 @@ const agents = {
     path: '/compass/agents',
     method: 'get',
     func: function(request, response) {
-        const path = 'agents.html'
-        sendHtml(path, response)
+        // const path = 'agents.html'
+        // sendHtml(path, response)
+        response.redirect('/m/agents')
     }
 }
 
@@ -59,7 +60,22 @@ const auth = {
         const code = request.query.code
         getOpenidByCode(code, function(openid) {
             console.log('openid', openid);
-            response.redirect(`/compass/listings?openid=${openid}`)
+            // response.redirect(`/compass/listings?openid=${openid}`)
+            response.redirect(`/m/listings?openid=${openid}`)
+        })
+    }
+}
+
+const auth1 = {
+    path: '/compass/auth1',
+    method: 'get',
+    func: function(request, response) {
+        console.log('get listings query', request.query)
+        const code = request.query.code
+        getOpenidByCode(code, function(openid) {
+            console.log('openid', openid);
+            // response.redirect(`/compass/listings?openid=${openid}`)
+            response.redirect(`/m/agents?openid=${openid}`)
         })
     }
 }
@@ -79,6 +95,7 @@ const routes = [
     listings,
     articles,
     auth,
+    auth1,
 ]
 
 module.exports.routes = routes
