@@ -1,8 +1,10 @@
 var express = require('express')
+var compression = require('compression')
 var app = express()
 var bodyParser = require('body-parser')
 const cookieParser = require("cookie-parser")
 
+app.use(compression());
 app.use(bodyParser.json())
 app.use(express.static('static'))
 app.use(cookieParser())
