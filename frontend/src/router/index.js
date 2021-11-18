@@ -13,7 +13,7 @@ const routes = [
         path: "agents",
         name: "Search",
         meta:{
-          title: '查找经济人'
+          title: '查找经纪人',
         },
         component: Search,
       },
