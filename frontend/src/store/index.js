@@ -19,9 +19,9 @@ export default createStore({
       '/images/agent5.jpeg',
       '/images/agent6.png',
       '/images/agent7.png',
-      '/images/agent8.png',
+      '/images/agent8.jpeg',
       '/images/agent9.png',
-      '/images/agent10.png',
+      '/images/agent10.jpeg',
     ],
     openid: getCookie(openidKey)
   },

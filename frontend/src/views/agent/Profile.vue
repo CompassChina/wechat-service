@@ -5,11 +5,14 @@
           <div class="agent-left" style="width:100%;">
             <div class="agent-name">{{agentInfo.name}}</div>
             <div class="flex-center">
-              <div class="agent-title">地区：{{agentInfo.region}}</div>
-              <div class="agent-title">中文服务：{{agentInfo.speaking_chinese?'是':'否'}}</div>
+              <div class="agent-title" style="width: 60%;">地区：{{agentInfo.region}}</div>
+              <div class="agent-title" style="width: 40%;">中文服务：{{agentInfo.speaking_chinese?'是':'否'}}</div>
             </div>
             <div class="flex-center">
-              <div class="agent-email">邮箱：<a :href="`mailto:${agentInfo.email}`">{{agentInfo.email}}</a></div>
+               <div class="agent-email">邮箱：<a :href="`mailto:${agentInfo.email}`">{{agentInfo.email}}</a></div>
+            </div>
+            <div class="flex-center">
+              
               <div class="agent-mobile">电话: <a :href="`tel:${agentInfo.phone_number}`">{{agentInfo.phone_number}}</a></div>
             </div>
           </div>
@@ -107,6 +110,9 @@ export default {
       a {
         // color: 
       }
+    }
+    .agent-email{
+      width: 100%;
     }
   }
   .agent-right{

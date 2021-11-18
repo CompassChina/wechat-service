@@ -21,16 +21,15 @@
                         <div>
                             <div class="agent-infoItem">地区：{{item.region}}</div>
                             <div class="agent-infoItem">是否支持中文：{{item.speaking_chinese?'是':'否'}}</div>
-                            <div class="agent-infoItem">邮箱：{{item.email}}</div>
-                            <div class="agent-infoItem">电话：{{item.phone_number}}</div>
+                            <div class="agent-infoItem">服务用户：{{ item.service_people }}次</div>
                         </div>
                         <div class="agent-infoRight">
                             <div class="agent-infoItem">从业：{{item.service_years}}年</div>
-                            <div class="agent-infoItem">服务用户：{{ item.service_people }}次</div>
                             <div class="agent-infoItem">成交：{{ item.num_of_deals }}单</div>
                         </div>
                     </div>
-                    
+                    <div class="agent-infoItem">邮箱：{{item.email}}</div>
+                    <div class="agent-infoItem">电话：{{item.phone_number}}</div>
                 </div>
             </div>
         </van-list>
@@ -137,7 +136,7 @@ export default {
         justify-content: space-between;
     }
     .search{
-        padding-bottom: 60px;
+        // padding-bottom: 60px;
     }
     .agent-list{
         margin-top: 20px;
@@ -146,6 +145,7 @@ export default {
         display: flex;
         background: #fff;
         margin-bottom: 10px;
+        padding-left: 12px;
         .item-left{
             width: 30%;
             img{
@@ -163,12 +163,15 @@ export default {
         margin-left: 8px;
     }
     .item-right{
-        padding: 14px 20px;
+        padding: 14px 12px;
         font-size: 12px;
         .agent-name{
-            font-size: 20px;
+            font-size: 16px;
             font-weight: bold;
             margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .agent-infoItem{
             color: #666;

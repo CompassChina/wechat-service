@@ -109,71 +109,6 @@
     },
     {
         "address": "",
-        "region": {
-            "name": "North Florida",
-            "img": "/images/north_florida.jpeg",
-            "num": 542
-        },
-        "image": "",
-        "price": 6801,
-        "media_id": "",
-        "created_time": 1637231759,
-        "id": 12
-    },
-    {
-        "address": "",
-        "region": {
-            "name": "Nashville",
-            "img": "/images/nashville.jpeg",
-            "num": 188
-        },
-        "image": "",
-        "price": 7917,
-        "media_id": "",
-        "created_time": 1637231759,
-        "id": 13
-    },
-    {
-        "address": "",
-        "region": {
-            "name": "Greater Boston",
-            "img": "/images/boston.png",
-            "num": 219
-        },
-        "image": "",
-        "price": 6285,
-        "media_id": "",
-        "created_time": 1637231879,
-        "id": 14
-    },
-    {
-        "address": "",
-        "region": {
-            "name": "Greater Boston",
-            "img": "/images/boston.png",
-            "num": 219
-        },
-        "image": "",
-        "price": 8065,
-        "media_id": "",
-        "created_time": 1637231879,
-        "id": 15
-    },
-    {
-        "address": "",
-        "region": {
-            "name": "Greater Boston",
-            "img": "/images/boston.png",
-            "num": 219
-        },
-        "image": "",
-        "price": 8558,
-        "media_id": "",
-        "created_time": 1637231939,
-        "id": 16
-    },
-    {
-        "address": "",
         "region": "Greater Boston",
         "image": "",
         "price": 8815,
@@ -189,5 +124,14 @@
         "media_id": "",
         "created_time": 1637232059,
         "id": 18
+    },
+    {
+        "address": "",
+        "region": "Nashville",
+        "image": "",
+        "price": 8609,
+        "media_id": "",
+        "created_time": 1637237219,
+        "id": 19
     }
 ]
