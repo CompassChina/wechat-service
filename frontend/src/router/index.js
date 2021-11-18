@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import Mobile from "../views/layout/Mobile";
-
+import Search from "../views/agent/Search.vue";
+import Profile from "../views/agent/Profile.vue";
+import Subscribe from "../views/Subscribe.vue";
 const routes = [
   {
     path: "/",
@@ -13,8 +15,7 @@ const routes = [
         meta:{
           title: '查找经济人'
         },
-        component: () =>
-          import(/* webpackChunkName: "agent_search" */ "../views/agent/Search.vue"),
+        component: Search,
       },
       {
         path: "profile/:id",
@@ -22,8 +23,7 @@ const routes = [
         meta:{
           title: '经纪人简介'
         },
-        component: () =>
-          import(/* webpackChunkName: "agent_profile" */ "../views/agent/Profile.vue"),
+        component: Profile,
       },
       {
         path: "listings",
@@ -31,8 +31,7 @@ const routes = [
         meta:{
           title: '订阅房源'
         },
-        component: () =>
-          import(/* webpackChunkName: "agent_profile" */ "../views/Subscribe.vue"),
+        component: Subscribe,
       },
     ]
   },
