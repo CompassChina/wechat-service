@@ -93,7 +93,7 @@ const setupApp = function () {
 }
 
 const __main = function() {
-    // getAccessToken()
+    getAccessToken()
     registerAllRoutes()
     setupApp()
     subscribe.runSubscribeCheck()

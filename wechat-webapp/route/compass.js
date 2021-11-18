@@ -36,8 +36,9 @@ const agents = {
     path: '/compass/agents',
     method: 'get',
     func: function(request, response) {
-        const path = 'agents.html'
-        sendHtml(path, response)
+        // const path = 'agents.html'
+        // sendHtml(path, response)
+        response.redirect('/m/agents')
     }
 }
 
@@ -59,7 +60,8 @@ const auth = {
         const code = request.query.code
         getOpenidByCode(code, function(openid) {
             console.log('openid', openid);
-            response.redirect(`/compass/listings?openid=${openid}`)
+            // response.redirect(`/compass/listings?openid=${openid}`)
+            response.redirect(`/m/listings?openid=${openid}`)
         })
     }
 }
