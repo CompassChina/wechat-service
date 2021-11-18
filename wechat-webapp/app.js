@@ -38,12 +38,12 @@ const createMenu = function(token) {
         {
              "type":"view",
              "name":"经纪人",
-             "url":"http://101.35.10.148/compass/agents"
+             "url":"http://compass.eversea.com/compass/agents"
          },
          {
               "type":"view",
               "name":"房源",
-              "url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa7c80e98abaf8cf8&redirect_uri=http://101.35.10.148/compass/auth&response_type=code&scope=snsapi_base&state=1#wechat_redirect"
+              "url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa7c80e98abaf8cf8&redirect_uri=http://compass.eversea.com/compass/auth&response_type=code&scope=snsapi_base&state=1#wechat_redirect"
           }
       ]
     }
