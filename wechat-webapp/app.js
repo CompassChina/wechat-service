@@ -38,7 +38,7 @@ const createMenu = function(token) {
         {
              "type":"view",
              "name":"经纪人",
-             "url":"http://compass.eversea.com/compass/agents"
+             "url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa7c80e98abaf8cf8&redirect_uri=http://compass.eversea.com/compass/auth1&response_type=code&scope=snsapi_base&state=1#wechat_redirect"
          },
          {
               "type":"view",

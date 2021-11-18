@@ -66,6 +66,20 @@ const auth = {
     }
 }
 
+const auth1 = {
+    path: '/compass/auth1',
+    method: 'get',
+    func: function(request, response) {
+        console.log('get listings query', request.query)
+        const code = request.query.code
+        getOpenidByCode(code, function(openid) {
+            console.log('openid', openid);
+            // response.redirect(`/compass/listings?openid=${openid}`)
+            response.redirect(`/m/agents?openid=${openid}`)
+        })
+    }
+}
+
 
 const articles = {
     path: '/compass/update_articles',
@@ -81,6 +95,7 @@ const routes = [
     listings,
     articles,
     auth,
+    auth1,
 ]
 
 module.exports.routes = routes
