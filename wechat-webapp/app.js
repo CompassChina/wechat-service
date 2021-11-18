@@ -76,6 +76,7 @@ const registerAllRoutes = function() {
         './route/wechat',
         './route/compass',
         './route/agent',
+        './route/frontend',
     ]
     for (const routeModule of routeModules) {
         const route = require(routeModule)
@@ -92,7 +93,7 @@ const setupApp = function () {
 }
 
 const __main = function() {
-    getAccessToken()
+    // getAccessToken()
     registerAllRoutes()
     setupApp()
     subscribe.runSubscribeCheck()

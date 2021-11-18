@@ -4,11 +4,11 @@ import Mobile from "../views/layout/Mobile";
 
 const routes = [
   {
-    path: "/m",
+    path: "/",
     component: Mobile,
     children: [
       {
-        path: "search",
+        path: "agents",
         name: "Search",
         component: () =>
           import(/* webpackChunkName: "agent_search" */ "../views/agent/Search.vue"),
@@ -20,7 +20,7 @@ const routes = [
           import(/* webpackChunkName: "agent_profile" */ "../views/agent/Profile.vue"),
       },
       {
-        path: "subscribe",
+        path: "listings",
         name: "Subscribe",
         component: () =>
           import(/* webpackChunkName: "agent_profile" */ "../views/Subscribe.vue"),
@@ -30,7 +30,8 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  // history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory('/m/'),
   routes,
 });
 

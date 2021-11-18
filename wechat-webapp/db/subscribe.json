@@ -7,14 +7,14 @@
     },
     {
         "openid": "o0mlt5xJRLk8W0WuxQm3THerQHCI",
-        "region": "sf",
-        "created_time": 1637159265,
-        "id": 2
-    },
-    {
-        "openid": "o0mlt5xJRLk8W0WuxQm3THerQHCI",
         "region": "la",
         "created_time": 1637159270,
         "id": 3
+    },
+    {
+        "openid": "o0mlt5xJRLk8W0WuxQm3THerQHCI",
+        "region": "sf",
+        "created_time": 1637224686,
+        "id": 4
     }
 ]
