@@ -2,7 +2,7 @@
   <div class="house-item">
       <div class="house-left">
           <div class="house-imgBox">
-              <img src="//www.compass.com/m3/cb839e3527778110e07f20ccb5228df62bba2931/165x165.jpg" alt="">
+              <img :src="houseData.img" alt="">
           </div>
       </div>
       <div class="house-right">
@@ -20,8 +20,13 @@
 import { ref } from 'vue';
 
 export default {
+    props:{
+        houseData: {
+            type: Object,
+            default: {}
+        }
+    },
     setup(props){
-        const houseData = ref({});
     }
 }
 </script>
@@ -43,7 +48,7 @@ export default {
         height: 77px;
         overflow: hidden;
         img{
-            width: 100%;
+            height: 100%;
         }
     }
     .house-name{
@@ -56,6 +61,5 @@ export default {
     .house-price{
         margin-bottom: 6px;
     }
-    .house-stats{
-    }
+    
 </style>

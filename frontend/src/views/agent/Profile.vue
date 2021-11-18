@@ -2,16 +2,20 @@
   <div class="profile">
       <div class="agent-card">
         <div class="flex-center">
-          <div class="agent-left">
+          <div class="agent-left" style="width:100%;">
             <div class="agent-name">{{agentInfo.name}}</div>
-            <div class="agent-title">地区：{{agentInfo.region}}</div>
-            <div class="agent-title">中文服务：{{agentInfo.speaking_chinese?'是':'否'}}</div>
-            <div class="agent-email">邮箱：<a :href="`mailto:${agentInfo.email}`">{{agentInfo.email}}</a></div>
-            <div class="agent-mobile">电话: <a :href="`tel:${agentInfo.phone_number}`">{{agentInfo.phone_number}}</a></div>
+            <div class="flex-center">
+              <div class="agent-title">地区：{{agentInfo.region}}</div>
+              <div class="agent-title">中文服务：{{agentInfo.speaking_chinese?'是':'否'}}</div>
+            </div>
+            <div class="flex-center">
+              <div class="agent-email">邮箱：<a :href="`mailto:${agentInfo.email}`">{{agentInfo.email}}</a></div>
+              <div class="agent-mobile">电话: <a :href="`tel:${agentInfo.phone_number}`">{{agentInfo.phone_number}}</a></div>
+            </div>
           </div>
           <div class="agent-right">
             <div class="agent-avatar">
-              <img src="https://img.yzcdn.cn/vant/ipad.jpeg" alt="">
+              <img :src="avatars[agentInfo.id % avatars.length]" alt="">
             </div>
           </div>
         </div>
@@ -37,7 +41,7 @@
       <div>
         <h3 class="house-title">已售房屋：</h3>
         <div class="house-lists">
-          <HouseItem class="house-list" v-for="item in houseList" :house-data={item}></HouseItem>
+          <HouseItem class="house-list" v-for="item in houseList" :house-data="{img: regionLists[item % regionLists.length].img}"></HouseItem>
         </div>
       </div>
   </div>
@@ -46,7 +50,8 @@
 <script>
 import { ref } from 'vue';
 import {useRouter } from 'vue-router'
-
+import { mapState } from 'vuex'
+ 
 import HouseItem from "../../components/HouseItem";
 import { getAgentByIdApi } from "../../api/agent"
 
@@ -63,7 +68,12 @@ export default {
 
     return { agentInfo, houseList }
   },
-  
+  computed:{
+    ...mapState({
+      avatars: state=>state.avatars,
+      regionLists: state => state.regions,
+    })
+  }
 }
 </script>
 
@@ -88,9 +98,11 @@ export default {
     .agent-name{
       font-size: 24px;
       font-weight: bold;
+      margin-bottom: 12px;
     }
     .agent-title,.agent-email,.agent-mobile{
       font-size: 12px;
+      width: 50%;
       color: #333;
       a {
         // color: 

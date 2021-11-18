@@ -11,9 +11,9 @@
             </template>
         </van-search>
         <van-list class="agent-list">
-            <div class="list-item" v-for="item in agentLists" :key="item.name" @click="goProfile(item.id)">
+            <div class="list-item" v-for="(item,index) in agentLists" :key="item.name" @click="goProfile(item.id)">
                 <div class="item-left flex-center">
-                    <img src="https://img.yzcdn.cn/vant/ipad.jpeg" alt="">
+                    <img :src="avatars[item.id % avatars.length]" alt="">
                 </div>
                 <div class="item-right">
                     <div class="agent-name">{{item.name}}<span class="agent-score">满意度：{{item.rating}}分</span></div>
@@ -38,7 +38,7 @@
             <div class="select-container">
                 <div class="select-title">选择地区：</div>
                 <van-radio-group v-model="regionChecked">
-                    <van-radio :name="region" v-for="region in regionLists">{{region}}</van-radio>
+                    <van-radio :name="region.name" v-for="region in regionLists">{{region.name}}</van-radio>
                 </van-radio-group>
                 <div class="select-title">是否支持中文：</div>
                 <van-radio-group v-model="speakingChineseChecked">
@@ -85,6 +85,7 @@ export default {
     computed:{
         ...mapState({
             regionLists: state => state.regions,
+            avatars: state=>state.avatars
         })
     },
     methods: {

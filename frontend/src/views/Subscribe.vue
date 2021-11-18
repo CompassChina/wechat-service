@@ -2,11 +2,23 @@
   <div class="subscribe">
       <h4>订阅地区：</h4>
       <van-list class="agent-list">
-            <van-cell-group inset>
-                <van-cell center v-for="item in regionLists" :key="item" :title="item">
+            <van-cell-group>
+                <van-cell center v-for="item in regionLists" :key="item.name">
+                    <template #title>
+                        <div class="region-item">
+                            <div class="region-imgbox">
+                                <img :src="item.img" alt="">
+                            </div>
+                            <div class="region-info">
+                                <div>{{item.name}}</div>
+                                <div class="region-num">房源数量：{{item.num}}</div>
+                            </div>
+                            <span class="custom-title"></span>
+                        </div>
+                    </template>
                     <template #right-icon>
-                        <van-button v-if="subscribeStatus && subscribeStatus[item]" plain hairline  type="warning"  size="mini" @click="onRemoveSubscribe(item)">取消订阅</van-button>
-                        <van-button v-else plain hairline  type="primary"  size="mini" @click="onSubscribe(item)">订阅</van-button>
+                        <van-button v-if="subscribeStatus && subscribeStatus[item.name]" plain hairline  type="warning"  size="mini" @click="onRemoveSubscribe(item.name)">取消订阅</van-button>
+                        <van-button v-else plain hairline  type="primary"  size="mini" @click="onSubscribe(item.name)">订阅</van-button>
                     </template>
                 </van-cell>
             </van-cell-group>
@@ -43,8 +55,12 @@ export default {
     },
     methods:{
         async updateSubscribeStatus(){
+            if(!this.openid){
+                return
+            }
             const userSubscribes = await getUserSubscribeApi(this.openid) || [];
-            this.regionLists.forEach(region => {
+            this.regionLists.forEach(it => {
+                let region = it.name;
                 this.subscribeStatus[region] = !!userSubscribes.find(item => item.region === region);
             });
         },
@@ -56,6 +72,7 @@ export default {
             const res = await addSubscribeApi(form);
 
             if(res.id || res.msg === '已订阅'){
+                this.subscribeStatus[region] = true;
                 this.updateSubscribeStatus();
             }
         },
@@ -67,6 +84,7 @@ export default {
             const res = await removeSubscribeApi(form);
 
             if(res.id){
+                this.subscribeStatus[region] = false;
                 this.updateSubscribeStatus();
             }else{
                 Notify({
@@ -83,6 +101,40 @@ export default {
 .subscribe{
     h4{
         padding: 0 14px;
+    }
+}
+.van-cell-group{
+    background: none;
+}
+.van-cell{
+    margin-bottom: 12px;
+}
+.region-item{
+    display: flex;
+    .region-imgbox{
+        width: 100px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+    img{
+        width: 100px;
+    }
+}
+
+.region-info{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 20px;
+    font-size: 18px;
+    font-weight: bold;
+
+    .region-num{
+        color: #666;
+        font-size: 12px;
     }
 }
 </style>
