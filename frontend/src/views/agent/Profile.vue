@@ -9,11 +9,11 @@
               <div class="agent-title" style="width: 40%;">中文服务：{{agentInfo.speaking_chinese?'是':'否'}}</div>
             </div>
             <div class="flex-center">
-               <div class="agent-email">邮箱：<a :href="`mailto:${agentInfo.email}`">{{agentInfo.email}}</a></div>
+               <div class="agent-email" style="width: 100%;">邮箱：<a :href="`mailto:${agentInfo.email}`">{{agentInfo.email}}</a></div>
             </div>
             <div class="flex-center">
               
-              <div class="agent-mobile">电话: <a :href="`tel:${agentInfo.phone_number}`">{{agentInfo.phone_number}}</a></div>
+              <div class="agent-mobile" style="width: 100%;">电话: <a :href="`tel:${agentInfo.phone_number}`">{{agentInfo.phone_number}}</a></div>
             </div>
           </div>
           <div class="agent-right">
